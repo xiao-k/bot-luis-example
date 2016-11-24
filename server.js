@@ -24,27 +24,6 @@ var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', dialog);
 
 // Add intent handlers
-dialog.matches('builtin.intent.what_day_of_week', [
-    function (session, args, next) {
-        console.log('what_day_of_week!!!!');
-        console.log('message:');
-        console.log(session.message);
-
-        var date = builder.EntityRecognizer.findEntity(args.entities, 'builtin.datetime');
-        console.log('date:');
-        console.log(date);
-
-        if (date != undefined && date.resolution != undefined) {
-            var d = new Date(date.resolution.date);
-            var day = '日月火水木金土'[d.getDay()];
-            session.send(day + '曜日だよ(๑•̀ㅁ•́๑)✧');
-        } else {
-            session.send("ちょっと失敗しちゃったから、もう一度質問してほしいなあ(｡>﹏<｡)");
-        }
-
-    }
-]);
-// Add intent handlers
 dialog.matches('what_day_of_week', [
     function (session, args, next) {
         console.log('what_day_of_week!!!!');
@@ -56,6 +35,7 @@ dialog.matches('what_day_of_week', [
         console.log(date);
 
         if (date != undefined && date.resolution != undefined) {
+            console.log(date);
             var d = new Date(date.resolution.date);
             var day = '日月火水木金土'[d.getDay()];
             session.send(day + '曜日だよ(๑•̀ㅁ•́๑)✧');
@@ -76,7 +56,6 @@ dialog.onDefault(
         console.log('message:');
         console.log(session.message);
 
-        // session.send("ごめんね、もうちょっとやさしく言い直してくれたらうれしいなあ(ﾉ_･｡)ｸｽﾝ")
-        session.send("(ﾉ_･｡)ｸｽﾝ");
+        session.send("ごめんね、もうちょっとやさしく言い直してくれたらうれしいなあ(ﾉ_･｡)ｸｽﾝ")
     }
 );
