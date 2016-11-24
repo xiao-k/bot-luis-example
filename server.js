@@ -26,6 +26,7 @@ bot.dialog('/', dialog);
 // Add intent handlers
 dialog.matches('builtin.intent.what_day_of_week', [
     function (session, args, next) {
+        console.log('what_day_of_week!!!!');
         console.log('message:');
         console.log(session.message);
 
@@ -46,6 +47,7 @@ dialog.matches('builtin.intent.what_day_of_week', [
 
 dialog.onDefault(
     function(session, args) {
+        console.log('None!!!!');
         console.log('args:');
         console.log(args);
 
