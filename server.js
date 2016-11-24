@@ -28,14 +28,13 @@ dialog.matches('what_day_of_week', [
     function (session, args, next) {
         console.log('what_day_of_week!!!!');
         console.log('message:');
-        console.log(session.message);
-
-        var date = builder.EntityRecognizer.findEntity(args.entities, 'builtin.datetime');
+        // console.log(session.message);
+        console.log(args.entities);
+        var date = builder.EntityRecognizer.findEntity(args.entities, 'datetime');
         console.log('date:');
         console.log(date);
 
         if (date != undefined && date.resolution != undefined) {
-            console.log(date);
             var d = new Date(date.resolution.date);
             var day = '日月火水木金土'[d.getDay()];
             session.send(day + '曜日だよ(๑•̀ㅁ•́๑)✧');
