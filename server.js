@@ -21,6 +21,7 @@ var model = 'https://api.projectoxford.ai/luis/v1/application?id=' + process.env
     + '&subscription-key=' + process.env.LUIS_SUBSCRIPTION_KEY;
 var recognizer = new builder.LuisRecognizer(model);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
+console.log("testtest");
 bot.dialog('/', dialog);
 
 // Add intent handlers
