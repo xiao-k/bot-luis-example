@@ -55,6 +55,7 @@ dialog.onDefault(
         console.log('message:');
         console.log(session.message);
 
-        session.send("ごめんね、もうちょっとやさしく言い直してくれたらうれしいなあ(ﾉ_･｡)ｸｽﾝ")
+        // session.send("ごめんね、もうちょっとやさしく言い直してくれたらうれしいなあ(ﾉ_･｡)ｸｽﾝ")
+        session.send("(ﾉ_･｡)ｸｽﾝ");
     }
 );
