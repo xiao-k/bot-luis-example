@@ -21,7 +21,6 @@ var model = 'https://api.projectoxford.ai/luis/v1/application?id=' + process.env
     + '&subscription-key=' + process.env.LUIS_SUBSCRIPTION_KEY;
 var recognizer = new builder.LuisRecognizer(model);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
-console.log("testtest");
 bot.dialog('/', dialog);
 
 // Add intent handlers
@@ -45,6 +44,28 @@ dialog.matches('builtin.intent.what_day_of_week', [
 
     }
 ]);
+// Add intent handlers
+dialog.matches('what_day_of_week', [
+    function (session, args, next) {
+        console.log('what_day_of_week!!!!');
+        console.log('message:');
+        console.log(session.message);
+
+        var date = builder.EntityRecognizer.findEntity(args.entities, 'builtin.datetime');
+        console.log('date:');
+        console.log(date);
+
+        if (date != undefined && date.resolution != undefined) {
+            var d = new Date(date.resolution.date);
+            var day = '日月火水木金土'[d.getDay()];
+            session.send(day + '曜日だよ(๑•̀ㅁ•́๑)✧');
+        } else {
+            session.send("ちょっと失敗しちゃったから、もう一度質問してほしいなあ(｡>﹏<｡)");
+        }
+
+    }
+]);
+
 
 dialog.onDefault(
     function(session, args) {
